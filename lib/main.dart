@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:animated_background/animated_background.dart';
 
 void main() {
   runApp(const MaterialApp(
@@ -8,16 +8,44 @@ void main() {
   ));
 }
 
+class BackgroundAnimation extends StatefulWidget {
+  const BackgroundAnimation({super.key});
+
+  @override
+  State<BackgroundAnimation> createState() => _BackgroundAnimationState();
+}
+
+class _BackgroundAnimationState extends State<BackgroundAnimation>
+    with SingleTickerProviderStateMixin {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: AnimatedBackground(
+        vsync: this,
+        behaviour: RandomParticleBehaviour(
+          options: ParticleOptions(
+              spawnMaxRadius: 100,
+              spawnMaxSpeed: 40,  // spawnMaxSpeed deve ser maior ou igual a spawnMinSpeed
+              particleCount: 80,
+              spawnMinSpeed: 15,
+              baseColor: Colors.purple),
+        ),
+        child: Container(), // Deixando o child vazio para usar apenas o fundo
+      ),
+    );
+  }
+}
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-
-     
-       
+      appBar: AppBar(
+        backgroundColor: Colors.purple,
+      ),
       drawer: Drawer(
         child: ListView(
           children: <Widget>[
@@ -71,7 +99,7 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
-             Center(
+            Center(
               child: Column(
                 children: [
                   const SizedBox(height: 20.0), // Espaço no topo
@@ -115,7 +143,7 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
-             Center(
+            Center(
               child: Column(
                 children: [
                   const SizedBox(height: 20.0), // Espaço no topo
@@ -154,13 +182,12 @@ class HomePage extends StatelessWidget {
                           ),
                         ),
                       ),
-                      
                     ),
                   ),
                 ],
               ),
             ),
-              Center(
+            Center(
               child: Column(
                 children: [
                   const SizedBox(height: 20.0), // Espaço no topo
@@ -204,7 +231,7 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
-             Center(
+            Center(
               child: Column(
                 children: [
                   const SizedBox(height: 20.0), // Espaço no topo
@@ -251,7 +278,7 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
+      body: const BackgroundAnimation(),
     );
   }
 }
-
