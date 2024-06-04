@@ -31,7 +31,31 @@ class _BackgroundAnimationState extends State<BackgroundAnimation>
               spawnMinSpeed: 15,
               baseColor: Colors.purple),
         ),
-        child: Container(), // Deixando o child vazio para usar apenas o fundo
+         child: Center( 
+          child: Column(
+             mainAxisSize: MainAxisSize.min,
+            children: [
+               Text(
+                'Sobre mim',
+                style: TextStyle(
+                  fontFamily: 'Roboto',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 50,
+                  color: Colors.white,
+                )
+                ),
+                const SizedBox(height: 20), // Espaço entre o título e a imagem
+              ClipOval(
+                child: Image.asset(
+                  'lib/assets/imagens/WhatsApp-Image-2024-05-30-at-16.10.19.png',
+                  width: 250.0,
+                  height: 250.0,
+                  fit: BoxFit.cover,
+                ),
+              ), 
+          ],
+          ),
+         )
       ),
     );
   }
